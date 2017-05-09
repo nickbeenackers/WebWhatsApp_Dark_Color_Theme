@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+
+  "name": "WebWhatsapp color themes",
+  "description": "This extension allows you to change the colors on the WebWhatsapp page.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "WhatsAppColorIcon3.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts" : [
+    {
+      "matches" : ["http://web.whatsapp.com/*", "https://web.whatsapp.com/*"],
+      "js" : ["js/jquery-3.2.1.min.js", "themes/themesData.js", "js/script.js"]
+    }
+  ],
+
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "storage"
+  ]
+}
