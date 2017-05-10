@@ -25,38 +25,86 @@ chrome.storage.sync.get(["theme"], function(selectedThemeObj) {
 });
 
 function getCostumCSS(theme) {
-  console.log(getCSSElement(theme, "topBar"));
+  console.log(getCSSElement(theme, "mainColor"));
   var costumCSS = [
 
-    //other
+    // other
     "body " + getCSSElement(theme, "backgroundBottom"),
     ".app-wrapper.app-wrapper-web.app-wrapper-main " + getCSSElement(theme, "backgroundTop"),
     ".pane-header " + getCSSElement(theme, "topBar"), //if two separate values for top bar then: .pane-list-header
     ".chat-title" + getCSSElement(theme, "chatTitle"),
     ".chat-status" + getCSSElement(theme, "chatText"),
-    ".intro.pane-body " + getCSSElement(theme, "startUpBg"),
     ".intro-image {border-radius : 50%}",
+    ".intro-secondary-text a {color : " + getCSSElement(theme, "mainColor") +  " !important;}",
+    ".menu-item:not(.menu-shortcut) " + getCSSElement(theme, "menuImgItemsBg"),
 
-    // left collum
+    // left chat collum
     ".butterbar.butterbar-notification " + getCSSElement(theme, "desktopNotificationBg"),
     ".butterbar-title " + getCSSElement(theme, "desktopNotificationTitle"),
     ".butterbar-text" + getCSSElement(theme, "desktopNotificationText"),
     ".chatlist-panel-search " + getCSSElement(theme, "chatListPanelSearchBg1"),
-    ".cont-input-search " + getCSSElement(theme, "chatListPanelSearchBg2"),
     ".cont-input-search " + getCSSElement(theme, "chatListPanelSearchBg2Border"),
-    ".input-placeholder " + getCSSElement(theme, "chatListPanelSearchTextBg"),
+    ".cont-input-search " + getCSSElement(theme, "chatListPanelSearchTextBg"),
+    ".cont-input-search > .input.input.input-search " + getCSSElement(theme, "chatListPanelSearchTextBg"),
     ".input-placeholder " + getCSSElement(theme, "chatListPanelSearchText"),
+    ".input.input-search "+ getCSSElement(theme, "chatListPanelSearchText"),
     "#pane-side " + getCSSElement(theme, "chatListScrollBardBg"),
     ".chat " + getCSSElement(theme, "chatListChatBg"),
     ".chat-time" + getCSSElement(theme, "chatListChatTime"),
     ".chat-body" + getCSSElement(theme, "chatListChatBorderTop"),
     ".chat.active " + getCSSElement(theme, "chatListChatActiveBg"),
-    ".chat.active " + getCSSElement(theme, "chatListChatActiveBorder"),
-    ".chat.active:hover " + getCSSElement(theme, "chatListChatActiveHover"),
-//    ". " + getCSSElement(theme, ""),
+    ".chat.hover" + getCSSElement(theme, "chatListChatHoverBg"),
+    ".chatlist .chat:after, .chatlist .location:after " + getCSSElement(theme, "chatListChatActiveAndHoverBorder"),
+
+    // left menu colum
+    ".drawer-header " + getCSSElement(theme, "menuItemHeaderBg"),
+    ".drawer-body " + getCSSElement(theme, "menuItemBodyBg"),
+    ".input-wrapper " + getCSSElement(theme, "inputBg1"),
+    ".input-emoji " + getCSSElement(theme, "inputBg2"),
+      //settings
+    ".label " + getCSSElement(theme, "chatTitle"),
+    ".hint " + getCSSElement(theme, "chatText"),
+    ".checkbox.checked {background-color : " + getCSSElement(theme, "mainColor") + " !important; \n border-color : " + getCSSElement(theme, "mainColor") + " !important;}", //+ getCSSElement(theme, "checkBoxChecked"),
+    "select  " + getCSSElement(theme, "TurnOffAlertsAndSoundColor"),
+    ".empty-icon-container " + getCSSElement(theme, "archivedChatsIconBackground"),
+    ".empty-title " + getCSSElement(theme, "chatText"),
+    //TODO white borders
+      //new group
+    ".input-wrapper {border-bottom-color : " + getCSSElement(theme, "mainColor") + " !important; border-radius : 5px !important;}",
+    ".input-emoji  {border-radius : 5px !important;}",
+    ".label-text " + getCSSElement(theme, "chatTitle"),
+    ".input.input-text " + getCSSElement(theme, "chatText"),
+    ".char-counter {color : #697074 !important;}",
+    ".btn.btn-round {background-color : " + getCSSElement(theme, "mainColor") + "!important;}",
+      //profile
+    ".row.drawer-section-title " + getCSSElement(theme, "chatTitle"),
+    ".animate-enter1.well-input.drawer-section.well " + getCSSElement(theme, "menuItemBodyBg"),
+    ".hint.animate-enter1.well-transparent " + getCSSElement(theme, "chatText"),
+      //starred messages
+    ".starred-msg-wrapper.hover " + getCSSElement(theme, "starredMsgHover"),
+    ".starred-msg-wrapper.active " + getCSSElement(theme, "starredMsgActive"),
+    ".starred-msg-author.ellipsify " + getCSSElement(theme, "chatText"),
+    ".starred-msg-chat.ellipsify " + getCSSElement(theme, "chatText"),
+    ".starred-title-meta " + getCSSElement(theme, "chatListChatTime"),
+    //TODO white borders
 
     // center collum
-    ".pane-chat-msgs.pane-chat-body.lastTabIndex " + getCSSElement(theme, "msgListbg"),
+    ".intro.pane-body " + getCSSElement(theme, "startUpBg"),
+    ".pane-chat-msgs.pane-chat-body.lastTabIndex " + getCSSElement(theme, "conversationBg"),
+    "[class^='bubble'] " + getCSSElement(theme, "messageBg"),
+    ".document-body " + getCSSElement(theme, "messageDocumentBg"),
+    ".emojitext.selectable-text " + getCSSElement(theme, "messageC"),
+
+    // right menu colum
+    ".chat-time-title " + getCSSElement(theme, "chatSearchTimeColor"),
+
+    ".icon, .icon-s, .icon-l, .context-icon, .icon-status-check, .icon-msg-check,.menu-tabs > .menu-item{",
+	// "    -webkit-filter: invert(1) !important;",
+	// "    filter: invert(1) !important;",
+    "    -webkit-filter: hue-rotate(-198deg) !important;", "    filter: hue-rotate(-198deg) !important;",
+    "    -webkit-filter: brightness(100%) !important;", "    filter: brightness(100%) !important;",
+    "    -webkit-filter: contrast(100%) !important;", "    filter: contrast(100%) !important;",
+  	"}",
 
   ].join("\n");
   return costumCSS;
@@ -69,7 +117,6 @@ function getCSSElement(theme, elementName) {
   var input = inputRaw.split(">");
 
   switch (input[0]) {
-    default:
     case "bg" :
     case "bgColor":
       return "{background-color : " + input[1] + " !important;}";
@@ -94,5 +141,9 @@ function getCSSElement(theme, elementName) {
 
     case "keep":
       return "";
+
+
+    default:
+      return input[0];
   }
 }

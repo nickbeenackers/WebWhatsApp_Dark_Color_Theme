@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "WebWhatsapp color themes",
-  "description": "This extension allows you to change the colors on the WebWhatsapp page.",
+  "description": "This extension allows you to change the colors on the WebWhatsapp page. Not any support for in browser edit.(for people with a litle bit of programming should it still be easy to costumize)",
   "version": "1.0",
 
   "browser_action": {

@@ -16,8 +16,9 @@
 var dataThemes = [];
 
 //Darktheme colors are based off Discord dark mode
-var darkBg = Array("#36393E", "#2E3136", "#282B30", "#1E2124", "#111"); //sorted light to dark
-var darkFontC = new Array("#FFF", "rgba(255, 255, 255, 0.6)", "rgba(255, 255, 255, 0.4)");
+var darkBg = Array("#36393E", "#2E3136", "#282B30", "#1E2124", "#111",  //sorted light to dark
+                    "rgba(40,43,48, 0.6)");
+var darkFontC =  Array("#FFF", "rgba(255, 255, 255, 0.6)", "rgba(255, 255, 255, 0.4)");
 dataThemes[0] = {
     "themeName" : "Dark",
 
@@ -27,32 +28,56 @@ dataThemes[0] = {
 
     "topBar" : "bg>" + darkBg[3],
 
-    "startUpBg" : "bg>" + darkBg[0],
-
     "chatTitle" : "c>" + darkFontC[0],
     "chatText" : "c>" + darkFontC[1],
+    "mainColor" : "#F00",//"keep>", //If want to change this color only put in the color value. ex: "#F00"
+    "menuImgItemsBg" : "css>border-radius : 30% !important;  \n background-color : " + darkBg[1] + " !important;",
 
-    //Left colum
+
+    //Left chat colum
     "desktopNotificationBg" : "bg>" + darkBg[2],
     "desktopNotificationTitle" : "c>" + darkFontC[0],
     "desktopNotificationText" : "c>" + darkFontC[0],
 
     "chatListPanelSearchBg1" :  "bg>" + darkBg[2],
-    "chatListPanelSearchBg2" : "keep>",// Do not adjust this value
     "chatListPanelSearchBg2Border" : "css>border-width : 0px;",
-    "chatListPanelSearchTextBg" : "keep>", // Do not adjust this value
-    "chatListPanelSearchText" : "keep>",
+    "chatListPanelSearchTextBg" : "bg>" + darkBg[0],
+    "chatListPanelSearchText" : "c>" + darkFontC[1],
 
     "chatListScrollBardBg" : "bg>" + darkBg[1],
     "chatListChatBg" : "bg>" + darkBg[1],
     "chatListChatTime" : "c>" + darkFontC[2],
     "chatListChatBorderTop" : "css>border-top-color : " + darkBg[2] + " !important;",
     "chatListChatActiveBg" : "bg>" + darkBg[2],
-    "chatListChatActiveBorder" : "css>border-bottom-color : " + darkBg[2] + " !important;",
-    "chatListChatActiveHover" : "css>border-bottom-color : " + darkBg[2] + " !important;",
+    "chatListChatActiveAndHoverBorder" : "css>border-bottom-color : " + darkBg[2] + " !important;",
+    "chatListChatHoverBg" : "bg>" + darkBg[2],
+
+    //left menu items
+    "menuItemHeaderBg" : "bg>" + darkBg[3],
+    "menuItemBodyBg" : "bg>" + darkBg[1],
+    "inputBg1" : "bg>" + darkBg[4],
+    "inputBg2" : "bg>" + darkBg[0],
+      //settings
+    "TurnOffAlertsAndSoundColor" : "c>" + darkFontC[0], // !NOT WORIKING!
+      //archived chats
+    "archivedChatsIconBackground" : "bg>" + darkBg[1],
+      //new group
+      //starred messages
+    "starredMsgHover" : "bg>" + darkBg[2],
+    "starredMsgActive" : "bg>" + darkBg[2],
 
     //center collum
-    "msgListbg" : "bg>" + darkBg[0],
+    "startUpBg" : "bg>" + darkBg[0],
+    "conversationBg" : "bg>" + darkBg[0],
+    "messageBg" : "bg>" + darkBg[1],
+    "messageC" : "c>" + darkFontC[1],
+    "messageDocumentBg" : "bg>" + darkBg[0],
+
+    //right menu colum
+    "chatSearchTimeColor" : "c>" + darkBg[0],
+
+
+
   };
 dataThemes[1] = {
     "themeName" : "Costum 1",
