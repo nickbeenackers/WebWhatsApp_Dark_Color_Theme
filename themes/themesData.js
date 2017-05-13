@@ -13,12 +13,32 @@
 
 
 */
+function decimalToHex(d, padding) {
+    var hex = Number(d).toString(16);
+    padding = typeof (padding) === "undefined" || padding === null ? padding = 2 : padding;
+
+    while (hex.length < padding) {
+        hex = "0" + hex;
+    }
+
+    return hex;
+}
+
 var dataThemes = [];
 
 //Darktheme colors are based off Discord dark mode
 var darkBg = Array("#36393E", "#2E3136", "#282B30", "#1E2124", "#111",  //sorted light to dark
                     "rgba(40,43,48, 0.6)");
 var darkFontC =  Array("#FFF", "rgba(255, 255, 255, 0.6)", "rgba(255, 255, 255, 0.4)");
+var mainColorSplit = {
+  "r" : "255",
+  "g" : "0",
+  "b" : "0",
+};
+
+var mainColor = "#" + decimalToHex(mainColorSplit["r"]) + decimalToHex(mainColorSplit["g"]) + decimalToHex(mainColorSplit["b"]);
+var mainColorCSS = "" +  mainColorSplit["r"] + "," + mainColorSplit["g"] + "," + mainColorSplit["b"];
+
 dataThemes[0] = {
     "themeName" : "Dark",
 
@@ -26,25 +46,33 @@ dataThemes[0] = {
     "backgroundTop" : "bg>" + darkBg[4],
     "backgroundBottom" : "bg>" + darkBg[4],
 
-    "topBar" : "bg>" + darkBg[3],
-
     "chatTitle" : "c>" + darkFontC[0],
     "chatText" : "c>" + darkFontC[1],
-    "mainColor" : "#F00",//"keep>", //If want to change this color only put in the color value. ex: "#F00"
-    "menuImgItemsBg" : "css>border-radius : 30% !important;  \n background-color : " + darkBg[1] + " !important;",
+    "mainColor" : "" + mainColor,
+
+    "topBar" : "bg>" + darkBg[3],
+    "menuItemsBg" : "css>border-radius : 30% !important;  \n background-color : rgba(" + mainColorCSS + ", 0.6) !important;",
+    "menuItemClickedBg" : "css>border-radius : 30% !important;  \n background-color : rgba(" + mainColorCSS + ", 0.8) !important;",
+    "subMenuItemBg" : "bg>" + darkBg[3],
+    "subMenuItemC" : "c>" + darkFontC[1],
+
+
+    "chatListScrollBarBg" : "bg>" + darkBg[1],
+    "chatListScrollBarMover" : "bg>rgba(" + mainColorCSS + ", 0.5)", //By default the mover will be a bit darker color then the background color
 
 
     //Left chat colum
+    "notificationTitle" : "c>" + darkFontC[0],
+    "notificationText" : "c>" + darkFontC[0],
     "desktopNotificationBg" : "bg>" + darkBg[2],
-    "desktopNotificationTitle" : "c>" + darkFontC[0],
-    "desktopNotificationText" : "c>" + darkFontC[0],
+    "notConnectedNotificationBg" : "bg>" + mainColor,
 
     "chatListPanelSearchBg1" :  "bg>" + darkBg[2],
     "chatListPanelSearchBg2Border" : "css>border-width : 0px;",
     "chatListPanelSearchTextBg" : "bg>" + darkBg[0],
     "chatListPanelSearchText" : "c>" + darkFontC[1],
 
-    "chatListScrollBardBg" : "bg>" + darkBg[1],
+
     "chatListChatBg" : "bg>" + darkBg[1],
     "chatListChatTime" : "c>" + darkFontC[2],
     "chatListChatBorderTop" : "css>border-top-color : " + darkBg[2] + " !important;",
@@ -72,12 +100,18 @@ dataThemes[0] = {
     "messageBg" : "bg>" + darkBg[1],
     "messageC" : "c>" + darkFontC[1],
     "messageDocumentBg" : "bg>" + darkBg[0],
+      //footer
+    "conversationSendMsgBg1" : "bg>" + darkBg[1],
+    "conversationSendMsgBg2" : "bg>" + darkBg[0],
 
     //right menu colum
-    "chatSearchTimeColor" : "c>" + darkBg[0],
+    "conversationSearchTimeColor" : "c>" + darkBg[0],
 
 
-
+    //Use here page
+    "useWhatsAppHerePopupBg" : "bg>" + darkBg[3],
+    "useWhatsAppHerePopupText" : "c>" + darkFontC[1],
+    "useWhatsAppHerePopupBtnText" : "c>" + darkBg[3],
   };
 dataThemes[1] = {
     "themeName" : "Costum 1",

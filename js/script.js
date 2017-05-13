@@ -24,8 +24,23 @@ chrome.storage.sync.get(["theme"], function(selectedThemeObj) {
   });
 });
 
+// function getCSSElementRaw2(theme, elementName) {
+//   console.log("Debug 1");
+//   var inputRaw = theme[elementName];
+//     console.log("Debug 2");
+//   var input = inputRaw.split(">");
+//     console.log("Debug 3");
+//     console.log(input);
+//   if(input.size > 1)
+//     return input[1];
+//   else
+//     return "";
+// }
+
 function getCostumCSS(theme) {
-  console.log(getCSSElement(theme, "mainColor"));
+  //console.log(getCSSElement(theme, "mainColor"));
+  console.log(mainColorCSS);
+  console.log(mainColor);
   var costumCSS = [
 
     // other
@@ -36,25 +51,38 @@ function getCostumCSS(theme) {
     ".chat-status" + getCSSElement(theme, "chatText"),
     ".intro-image {border-radius : 50%}",
     ".intro-secondary-text a {color : " + getCSSElement(theme, "mainColor") +  " !important;}",
-    ".menu-item:not(.menu-shortcut) " + getCSSElement(theme, "menuImgItemsBg"),
+
+    ".menu-item:not(.menu-shortcut) " + getCSSElement(theme, "menuItemsBg"),
+    ".menu-item.active:not(.menu-shortcut) " + getCSSElement(theme, "menuItemClickedBg"),
+    ".dropdown.dropdown-right, .dropdown.dropdown-compact {background-color : " + getCSSElement(theme, "mainColor") + "!important;}",
+    ".menu-item.menu-shortcut " + getCSSElement(theme, "subMenuItemBg"),
+    ".ellipsify " + getCSSElement(theme, "subMenuItemC"),
+
+    "*::-webkit-scrollbar-track " + getCSSElement(theme, "chatListScrollBarBg"),
+    "*::-webkit-scrollbar-thumb {background : " + getCSSElement(theme, "chatListScrollBarMover", "Raw") + " !important;}",
 
     // left chat collum
+    ".butterbar-title " + getCSSElement(theme, "notificationTitle"),
+    ".butterbar-text" + getCSSElement(theme, "notificationText"),
     ".butterbar.butterbar-notification " + getCSSElement(theme, "desktopNotificationBg"),
-    ".butterbar-title " + getCSSElement(theme, "desktopNotificationTitle"),
-    ".butterbar-text" + getCSSElement(theme, "desktopNotificationText"),
+    ".butterbar.butterbar-computer " + getCSSElement(theme, "notConnectedNotificationBg"),
+    ".butterbar.butterbar-phone " + getCSSElement(theme, "notConnectedNotificationBg"),
+
     ".chatlist-panel-search " + getCSSElement(theme, "chatListPanelSearchBg1"),
     ".cont-input-search " + getCSSElement(theme, "chatListPanelSearchBg2Border"),
     ".cont-input-search " + getCSSElement(theme, "chatListPanelSearchTextBg"),
     ".cont-input-search > .input.input.input-search " + getCSSElement(theme, "chatListPanelSearchTextBg"),
     ".input-placeholder " + getCSSElement(theme, "chatListPanelSearchText"),
     ".input.input-search "+ getCSSElement(theme, "chatListPanelSearchText"),
-    "#pane-side " + getCSSElement(theme, "chatListScrollBardBg"),
+
+
     ".chat " + getCSSElement(theme, "chatListChatBg"),
     ".chat-time" + getCSSElement(theme, "chatListChatTime"),
     ".chat-body" + getCSSElement(theme, "chatListChatBorderTop"),
     ".chat.active " + getCSSElement(theme, "chatListChatActiveBg"),
-    ".chat.hover" + getCSSElement(theme, "chatListChatHoverBg"),
-    ".chatlist .chat:after, .chatlist .location:after " + getCSSElement(theme, "chatListChatActiveAndHoverBorder"),
+    ".chat.hover, .location:hover " + getCSSElement(theme, "chatListChatHoverBg"),
+    ".chat:after,  .location:after " + getCSSElement(theme, "chatListChatActiveAndHoverBorder"), //.chatlist
+    ".chatlist.list-icons .chat:hover .chat-body  {border-top-color : " + getCSSElement(theme, "mainColor") + " !important;}",
 
     // left menu colum
     ".drawer-header " + getCSSElement(theme, "menuItemHeaderBg"),
@@ -68,7 +96,6 @@ function getCostumCSS(theme) {
     "select  " + getCSSElement(theme, "TurnOffAlertsAndSoundColor"),
     ".empty-icon-container " + getCSSElement(theme, "archivedChatsIconBackground"),
     ".empty-title " + getCSSElement(theme, "chatText"),
-    //TODO white borders
       //new group
     ".input-wrapper {border-bottom-color : " + getCSSElement(theme, "mainColor") + " !important; border-radius : 5px !important;}",
     ".input-emoji  {border-radius : 5px !important;}",
@@ -83,28 +110,75 @@ function getCostumCSS(theme) {
       //starred messages
     ".starred-msg-wrapper.hover " + getCSSElement(theme, "starredMsgHover"),
     ".starred-msg-wrapper.active " + getCSSElement(theme, "starredMsgActive"),
+    ".starred-msg-wrapper.active:before,  .starred-msg-wrapper.current:before, .starred-msg-wrapper:before " +getCSSElement(theme, "starredMsgActive"),
+    ".starred-msg-wrapper.active:after,  .starred-msg-wrapper.current:after, .starred-msg-wrapper:after " + getCSSElement(theme, "starredMsgActive"),
+    ".starred-msg-wrapper:after " +getCSSElement(theme, "chatListChatActiveAndHoverBorder"),
     ".starred-msg-author.ellipsify " + getCSSElement(theme, "chatText"),
     ".starred-msg-chat.ellipsify " + getCSSElement(theme, "chatText"),
     ".starred-title-meta " + getCSSElement(theme, "chatListChatTime"),
-    //TODO white borders
 
     // center collum
     ".intro.pane-body " + getCSSElement(theme, "startUpBg"),
+    ".intro:after {border-top-color : " + getCSSElement(theme, "mainColor") + " !important;}",
+
     ".pane-chat-msgs.pane-chat-body.lastTabIndex " + getCSSElement(theme, "conversationBg"),
     "[class^='bubble'] " + getCSSElement(theme, "messageBg"),
+    ".message-system-body " + getCSSElement(theme, "messageBg"),
+    ".emojitext " + getCSSElement(theme, "messageC"),
     ".document-body " + getCSSElement(theme, "messageDocumentBg"),
+    ".emojitext.ellipsify " + getCSSElement(theme, "messageC"),
     ".emojitext.selectable-text " + getCSSElement(theme, "messageC"),
+    ".vcard-name " + getCSSElement(theme, "messageC"),
+    ".context-out.context {background : linear-gradient(to right, rgba(220,248,198,0) 0%, " + getCSSElement(theme, "messageBg", "Raw") + " 50%) !important;}",
+    ".context-in.context {background : linear-gradient(to right, rgba(220,248,198,0) 0%, " + getCSSElement(theme, "messageBg", "Raw") + " 50%) !important;}",
+
+    ".media-content "  + getCSSElement(theme, "conversationBg"),
+    ".media-panel-header, .media-panel-header > .chat.media-chat " + getCSSElement(theme, "topBar"),
+    ".media-collection, .media-viewer " + getCSSElement(theme, "topBar"),
+    ".media-viewer {padding-bottom : 0px !important;}",
+    ".media-collection {border-color : " + getCSSElement(theme, "mainColor") + " !important;}",
+      //footer
+    ".pane-footer.pane-chat-footer {background-color : " + getCSSElement(theme, "mainColor") + " !important; border-left-width : 0px; border-right-width : 0px;}",
+    ".block-compose " + getCSSElement(theme, "conversationSendMsgBg1"),
+    ".input-container " + getCSSElement(theme, "conversationSendMsgBg2"),
+    ".input-container {border-width : 0px !important;}",
 
     // right menu colum
-    ".chat-time-title " + getCSSElement(theme, "chatSearchTimeColor"),
+    ".chat-time-title " + getCSSElement(theme, "conversationSearchTimeColor"),
+    ".header-title " + getCSSElement(theme, "chatTitle"),
+    ".well " + getCSSElement(theme, "chatListChatBg"),
+    ".well-chat-secondary.well-chat-secondary-group " + getCSSElement(theme, "chatListChatTime"),
+    ".well-chat-secondary.well-chat-secondary-group {padding-top : 10px !important;}",
+    ".well-simple " + getCSSElement(theme, "chatListChatBg"),
+    ".row-body " + getCSSElement(theme, "chatListChatActiveAndHoverBorder"),
+    ".list-action-icon {background-color : " + getCSSElement(theme, "mainColor") + " !important;}",
+    ".title " + getCSSElement(theme, "chatTitle"),
+    ".drawer-section-body.chatlist {padding-top : 0px}",
+      //all media
+    ".menu-tabs.menu-tabs-lists > .menu-item {border-radius : 0% !important;}",
+    ".menu-tabs.menu-tabs-lists:before {background-color : " + getCSSElement(theme, "mainColor") + " !important;}",
+      //invite to group via media
+    ".drawer-header-small " + getCSSElement(theme, "topBar"),
+    ".drawer-title-body " + getCSSElement(theme, "chatTitle"),
+    ".chat-idle:hover, .chat-idle:active " + getCSSElement(theme, "chatListChatHoverBg"),
+    ".list-invite a {color : " + getCSSElement(theme, "mainColor") + " !important;}",
+    ".controls-section " + getCSSElement(theme, "chatText"),
+
 
     ".icon, .icon-s, .icon-l, .context-icon, .icon-status-check, .icon-msg-check,.menu-tabs > .menu-item{",
-	// "    -webkit-filter: invert(1) !important;",
-	// "    filter: invert(1) !important;",
-    "    -webkit-filter: hue-rotate(-198deg) !important;", "    filter: hue-rotate(-198deg) !important;",
-    "    -webkit-filter: brightness(100%) !important;", "    filter: brightness(100%) !important;",
-    "    -webkit-filter: contrast(100%) !important;", "    filter: contrast(100%) !important;",
-  	"}",
+  	//"-webkit-filter: invert(1) !important; \nfilter: invert(1) !important;",
+    //"background-color : #FFF; background-blend-mode : color;",
+      //"    -webkit-filter: hue-rotate(-198deg) !important;", "    filter: hue-rotate(-198deg) !important;",
+    //"    -webkit-filter: brightness(50) !important;", "    filter: brightness(50) !important;",
+      //"    -webkit-filter: contrast(8) !important;", "    filter: contrast(8) !important;",
+    	"}",
+
+      //user here page
+      ".backdrop.backdrop-transparent " + getCSSElement(theme, "backgroundBottom"),
+      ".popup " + getCSSElement(theme, "useWhatsAppHerePopupBg"),
+      ".popup-contents " + getCSSElement(theme, "useWhatsAppHerePopupText"),
+      ".btn-plain.popup-controls-item  {color : " + getCSSElement(theme, "mainColor") + " !important;}",
+      ".btn-plain.btn-default.popup-controls-item {background-color : " + getCSSElement(theme, "mainColor") + " !important; color : " + getCSSElement(theme, "useWhatsAppHerePopupBtnText", "Raw")  + " !important;}",
 
   ].join("\n");
   return costumCSS;
@@ -114,7 +188,17 @@ function getCostumCSS(theme) {
 // return string with css code
 function getCSSElement(theme, elementName) {
   var inputRaw = theme[elementName];
+  //console.log(elementName);
   var input = inputRaw.split(">");
+
+  if(arguments[2] === "Raw") {
+    // check if "keep>" was the opperation
+    console.log(input);
+    if(input.length> 1)
+       return input[1];
+     else
+       return "";
+  }
 
   switch (input[0]) {
     case "bg" :
@@ -146,4 +230,13 @@ function getCSSElement(theme, elementName) {
     default:
       return input[0];
   }
+
+  // function getCSSElementRaw(theme, elementName) {
+  //   var inputRaw = theme[elementName];
+  //   var input = inputRaw.split(">");
+  //   if(input.size > 1)
+  //     return input[1];
+  //   else
+  //     return "";
+  // }
 }
