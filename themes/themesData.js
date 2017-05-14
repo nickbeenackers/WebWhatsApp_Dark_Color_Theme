@@ -24,7 +24,6 @@ function decimalToHex(d, padding) {
     return hex;
 }
 
-var dataThemes = [];
 
 //Darktheme colors are based off Discord dark mode
 var darkBg = Array("#36393E", "#2E3136", "#282B30", "#1E2124", "#111",  //sorted light to dark
@@ -35,12 +34,29 @@ var mainColorSplit = {
   "g" : "0",
   "b" : "0",
 };
-
+var mainColorSelect = 1;
 var mainColor = "#" + decimalToHex(mainColorSplit["r"]) + decimalToHex(mainColorSplit["g"]) + decimalToHex(mainColorSplit["b"]);
 var mainColorCSS = "" +  mainColorSplit["r"] + "," + mainColorSplit["g"] + "," + mainColorSplit["b"];
 
-dataThemes[0] = {
-    "themeName" : "Dark",
+
+var dataThemes = [
+{
+  "name" : "None",
+  "options" : [],
+},
+{
+    "name" : "Dark",
+    "change" : "mainColor",
+    "options" : [
+      {"name" : "none",   "data" :  ["",    "",     ""]},
+      {"name" : "red",    "data" :  ["255", "0",    "0"]},
+      {"name" : "yellow", "data" :  ["255", "255",  "0"]},
+      {"name" : "green",  "data" :  ["0",   "255",  "0"]},
+      {"name" : "cyan",   "data" :  ["0",   "255",  "255"]},
+      {"name" : "blue",   "data" :  ["0",   "0",    "255"]},
+      {"name" : "purple", "data" :  ["255", "0",    "255"]},
+      {"name" : "rainbow","data" :  ["",    "",     ""]}
+    ],
 
     //other
     "backgroundTop" : "bg>" + darkBg[4],
@@ -51,7 +67,7 @@ dataThemes[0] = {
     "mainColor" : "" + mainColor,
 
     "topBar" : "bg>" + darkBg[3],
-    "menuItemsBg" : "css>border-radius : 30% !important;  \n background-color : rgba(" + mainColorCSS + ", 0.6) !important;",
+    "menuItemBg" : "css>border-radius : 30% !important;  \n background-color : rgba(" + mainColorCSS + ", 0.6) !important;",
     "menuItemClickedBg" : "css>border-radius : 30% !important;  \n background-color : rgba(" + mainColorCSS + ", 0.8) !important;",
     "subMenuItemBg" : "bg>" + darkBg[3],
     "subMenuItemC" : "c>" + darkFontC[1],
@@ -99,10 +115,16 @@ dataThemes[0] = {
     "conversationBg" : "bg>" + darkBg[0],
     "messageBg" : "bg>" + darkBg[1],
     "messageC" : "c>" + darkFontC[1],
-    "messageDocumentBg" : "bg>" + darkBg[0],
+    "messageBigBg" : "bg>" + darkBg[0],
+    "messageDiscriptionC" : "c>" + darkFontC[2],
+    "messageSelectedBg" : "css>background-color : rgba(" + mainColorCSS + ", 0.1) !important;",
+    "messageOutTailBg" : "css>filter: invert(1) grayscale(100%) contrast(69%);",
+    "messageInTailBg" : "css>filter: invert(1) grayscale(100%) contrast(60%);",
       //footer
     "conversationSendMsgBg1" : "bg>" + darkBg[1],
     "conversationSendMsgBg2" : "bg>" + darkBg[0],
+      //emoji picker
+
 
     //right menu colum
     "conversationSearchTimeColor" : "c>" + darkBg[0],
@@ -112,8 +134,8 @@ dataThemes[0] = {
     "useWhatsAppHerePopupBg" : "bg>" + darkBg[3],
     "useWhatsAppHerePopupText" : "c>" + darkFontC[1],
     "useWhatsAppHerePopupBtnText" : "c>" + darkBg[3],
-  };
-dataThemes[1] = {
-    "themeName" : "Costum 1",
-    "topBar" : "#"
-  }
+  }];
+// dataThemes[1] = {
+//     "themeName" : "Costum 1",
+//     "topBar" : "#"
+//   }

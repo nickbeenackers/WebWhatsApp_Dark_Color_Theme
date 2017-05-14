@@ -5,7 +5,7 @@ chrome.storage.sync.get(["theme"], function(selectedThemeObj) {
   var selectedTheme = selectedThemeObj.theme;
 
   // Check if selectedTheme is None
-  if(selectedTheme == -1)
+  if(selectedTheme == 0)
     return;
 
   var theme = dataThemes[selectedTheme];
@@ -13,7 +13,6 @@ chrome.storage.sync.get(["theme"], function(selectedThemeObj) {
   var costumCSS;
 
   $(function() { //Do this when page loading is finished
-
     // remove old css
     $(costumCSS).remove();
 
@@ -52,9 +51,11 @@ function getCostumCSS(theme) {
     ".intro-image {border-radius : 50%}",
     ".intro-secondary-text a {color : " + getCSSElement(theme, "mainColor") +  " !important;}",
 
-    ".menu-item:not(.menu-shortcut) " + getCSSElement(theme, "menuItemsBg"),
+    ".menu-item:not(.menu-shortcut) " + getCSSElement(theme, "menuItemBg"),
+    //".menu-item:not(.menu-shortcut) border-radius : 30% !important;",
     ".menu-item.active:not(.menu-shortcut) " + getCSSElement(theme, "menuItemClickedBg"),
-    ".dropdown.dropdown-right, .dropdown.dropdown-compact {background-color : " + getCSSElement(theme, "mainColor") + "!important;}",
+    //".menu-item.active:not(.menu-shortcut) border-radius : 30% !important;",
+    ".dropdown.dropdown-right, .dropdown.dropdown-compact, .dropdown {background-color : " + getCSSElement(theme, "mainColor") + "!important;}",
     ".menu-item.menu-shortcut " + getCSSElement(theme, "subMenuItemBg"),
     ".ellipsify " + getCSSElement(theme, "subMenuItemC"),
 
@@ -94,6 +95,7 @@ function getCostumCSS(theme) {
     ".hint " + getCSSElement(theme, "chatText"),
     ".checkbox.checked {background-color : " + getCSSElement(theme, "mainColor") + " !important; \n border-color : " + getCSSElement(theme, "mainColor") + " !important;}", //+ getCSSElement(theme, "checkBoxChecked"),
     "select  " + getCSSElement(theme, "TurnOffAlertsAndSoundColor"),
+    "select  " + getCSSElement(theme, "menuItemBodyBg"),
     ".empty-icon-container " + getCSSElement(theme, "archivedChatsIconBackground"),
     ".empty-title " + getCSSElement(theme, "chatText"),
       //new group
@@ -124,24 +126,50 @@ function getCostumCSS(theme) {
     ".pane-chat-msgs.pane-chat-body.lastTabIndex " + getCSSElement(theme, "conversationBg"),
     "[class^='bubble'] " + getCSSElement(theme, "messageBg"),
     ".message-system-body " + getCSSElement(theme, "messageBg"),
-    ".emojitext " + getCSSElement(theme, "messageC"),
-    ".document-body " + getCSSElement(theme, "messageDocumentBg"),
+    ".document-body " + getCSSElement(theme, "messageBigBg"),
     ".emojitext.ellipsify " + getCSSElement(theme, "messageC"),
     ".emojitext.selectable-text " + getCSSElement(theme, "messageC"),
     ".vcard-name " + getCSSElement(theme, "messageC"),
+
     ".context-out.context {background : linear-gradient(to right, rgba(220,248,198,0) 0%, " + getCSSElement(theme, "messageBg", "Raw") + " 50%) !important;}",
     ".context-in.context {background : linear-gradient(to right, rgba(220,248,198,0) 0%, " + getCSSElement(theme, "messageBg", "Raw") + " 50%) !important;}",
+    ".context-media {background : linear-gradient(15deg, transparent 0%, transparent 45%, rgba(0,0,0,0.12) 70%, rgba(0,0,0,0.33) 100%);}",
+    ".context-out.context-special {background : linear-gradient(to right, rgba(220,248,198,0) 0%, " + getCSSElement(theme, "messageBigBg", "Raw") + " 50%) !important;}",
+    ".context-in.context-special {background : linear-gradient(to right, rgba(220,248,198,0) 0%, " + getCSSElement(theme, "messageBigBg", "Raw") + " 50%) !important;}",
+
+    ".link-preview-container " + getCSSElement(theme, "messageBigBg"),
+    ".link-preview-title " + getCSSElement(theme, "messageC"),
+    ".link-preview-description " + getCSSElement(theme, "messageC"),
+    ".selected .msg-select, .selected .msg-select:hover, .msg-select:hover " + getCSSElement(theme, "messageSelectedBg"),
+    ".message-in .tail-container " + getCSSElement(theme, "messageInTailBg"),
+    ".message-out .tail-container " + getCSSElement(theme, "messageOutTailBg"),
 
     ".media-content "  + getCSSElement(theme, "conversationBg"),
     ".media-panel-header, .media-panel-header > .chat.media-chat " + getCSSElement(theme, "topBar"),
     ".media-collection, .media-viewer " + getCSSElement(theme, "topBar"),
     ".media-viewer {padding-bottom : 0px !important;}",
     ".media-collection {border-color : " + getCSSElement(theme, "mainColor") + " !important;}",
+
+    ".drawer-header-popup {background-color : " + getCSSElement(theme, "mainColor") + " !important;}",
+    ".drawer-header-popup " + getCSSElement(theme, "chatTitle"),
+    ".popup-contents > .drawer > [tabindex='-1'] " + getCSSElement(theme, "chatListPanelSearchBg1"),
+    //".infinite-list-item.infinite-list-item-transition:has( > .list-title) " + getCSSElement(theme, "chatListChatActiveBg"),
       //footer
+    ".input " + getCSSElement(theme, "messageC"),
     ".pane-footer.pane-chat-footer {background-color : " + getCSSElement(theme, "mainColor") + " !important; border-left-width : 0px; border-right-width : 0px;}",
     ".block-compose " + getCSSElement(theme, "conversationSendMsgBg1"),
     ".input-container " + getCSSElement(theme, "conversationSendMsgBg2"),
     ".input-container {border-width : 0px !important;}",
+
+    ".multi-controls " + getCSSElement(theme, "conversationSendMsgBg1"),
+    ".multi-count " + getCSSElement(theme, "messageC"),
+      //emoji picker
+    ".menu-tabs.menu-tabs-emoji.emoji-panel-header " + getCSSElement(theme, "conversationSendMsgBg1"),
+    ".menu-tabs-marker {background-color : " + getCSSElement(theme, "mainColor") + " !important;}",
+    ".emoji-panel-body-container, .emoji-search-row, .emoji-search, .dropdown-picker, .dropdown-picker .nib "  + getCSSElement(theme, "conversationSendMsgBg1"),
+    ".emoji-panel-body-container, .emoji-search-row, .emoji-search, .dropdown-picker, .dropdown-picker .nib {background : 0}",
+    ".emoji-panel-title " + getCSSElement(theme, "chatText"),
+    ".emoji-panel-section > * > [tabindex='-1'] {background-color : #FFF !important; \nborder-radius : 20px !important;}",
 
     // right menu colum
     ".chat-time-title " + getCSSElement(theme, "conversationSearchTimeColor"),
@@ -154,6 +182,15 @@ function getCostumCSS(theme) {
     ".list-action-icon {background-color : " + getCSSElement(theme, "mainColor") + " !important;}",
     ".title " + getCSSElement(theme, "chatTitle"),
     ".drawer-section-body.chatlist {padding-top : 0px}",
+    ".list-action-body.ellipsify {border-bottom-color : " + mainColor + " !important}",
+    ".list-action.list-action-alt:hover "  + getCSSElement(theme, "chatListChatActiveBg"),
+    ".chatlist-panel-body.pane-list-body " + getCSSElement(theme, "chatListChatBg"),
+    ".empty-text " + getCSSElement(theme, "chatTitle"),
+    ".compose-popup-panel,",
+	".link-preview-compose > .btn-background,",
+	".block-compose {",
+	"    background-color: #323232;",
+	"}",
       //all media
     ".menu-tabs.menu-tabs-lists > .menu-item {border-radius : 0% !important;}",
     ".menu-tabs.menu-tabs-lists:before {background-color : " + getCSSElement(theme, "mainColor") + " !important;}",
@@ -168,9 +205,18 @@ function getCostumCSS(theme) {
     ".icon, .icon-s, .icon-l, .context-icon, .icon-status-check, .icon-msg-check,.menu-tabs > .menu-item{",
   	//"-webkit-filter: invert(1) !important; \nfilter: invert(1) !important;",
     //"background-color : #FFF; background-blend-mode : color;",
-      //"    -webkit-filter: hue-rotate(-198deg) !important;", "    filter: hue-rotate(-198deg) !important;",
-    //"    -webkit-filter: brightness(50) !important;", "    filter: brightness(50) !important;",
+    //"    -webkit-filter: satturation(0%) !important;", "    filter: satturation(0%) !important;",
+    //"    -webkit-filter: satturation(100%) !important;", "    filter: satturation(100%) !important;",
+      "    -webkit-filter: hue-rotate(-90deg) !important;", "    filter: hue-rotate(-90deg) !important;",
+     //"    -webkit-filter: brightness(50%) !important;", "    filter: brightness(50%) !important;",
       //"    -webkit-filter: contrast(8) !important;", "    filter: contrast(8) !important;",
+      // yellow : -135deg
+      // green : -90deg
+      // blue :
+      // red :
+      // cyan : -20deg
+      // purple : 110deg
+
     	"}",
 
       //user here page
