@@ -27,7 +27,7 @@ function decimalToHex(d, padding) {
 
 //Darktheme colors are based off Discord dark mode
 var darkBg = Array("#36393E", "#2E3136", "#282B30", "#1E2124", "#111",  //sorted light to dark
-                    "rgba(40,43,48, 0.6)");
+                    "rgba(40,43,48, 0.6)", "rgba(40,43,48, 0.95)");
 var darkFontC =  Array("#FFF", "rgba(255, 255, 255, 0.6)", "rgba(255, 255, 255, 0.4)");
 var mainColorSplit = {
   "r" : "255",
@@ -120,6 +120,7 @@ var dataThemes = [
     "messageSelectedBg" : "css>background-color : rgba(" + mainColorCSS + ", 0.1) !important;",
     "messageOutTailBg" : "css>filter: invert(1) grayscale(100%) contrast(69%);",
     "messageInTailBg" : "css>filter: invert(1) grayscale(100%) contrast(60%);",
+    "backdrop" : "bg>" + darkBg[6],
       //footer
     "conversationSendMsgBg1" : "bg>" + darkBg[1],
     "conversationSendMsgBg2" : "bg>" + darkBg[0],

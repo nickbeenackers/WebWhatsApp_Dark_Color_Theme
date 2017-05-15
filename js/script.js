@@ -130,6 +130,7 @@ function getCostumCSS(theme) {
     ".emojitext.ellipsify " + getCSSElement(theme, "messageC"),
     ".emojitext.selectable-text " + getCSSElement(theme, "messageC"),
     ".vcard-name " + getCSSElement(theme, "messageC"),
+    ".message-daytime " + getCSSElement(theme, "chatListChatTime"),
 
     ".context-out.context {background : linear-gradient(to right, rgba(220,248,198,0) 0%, " + getCSSElement(theme, "messageBg", "Raw") + " 50%) !important;}",
     ".context-in.context {background : linear-gradient(to right, rgba(220,248,198,0) 0%, " + getCSSElement(theme, "messageBg", "Raw") + " 50%) !important;}",
@@ -153,7 +154,13 @@ function getCostumCSS(theme) {
     ".drawer-header-popup {background-color : " + getCSSElement(theme, "mainColor") + " !important;}",
     ".drawer-header-popup " + getCSSElement(theme, "chatTitle"),
     ".popup-contents > .drawer > [tabindex='-1'] " + getCSSElement(theme, "chatListPanelSearchBg1"),
-    //".infinite-list-item.infinite-list-item-transition:has( > .list-title) " + getCSSElement(theme, "chatListChatActiveBg"),
+    ".infinite-list-item.infinite-list-item-transition > .list-title " + getCSSElement(theme, "chatListChatActiveBg"),
+    ".drawer-controls-summary " + getCSSElement(theme, "topBar"),
+    ".list-comma-item " + getCSSElement(theme, "notificationTitle"),
+    ".backdrop " + getCSSElement(theme, "backdrop"),
+    ".compose-popup-panel, .link-preview-compose > .btn-background , .block-compose " + getCSSElement(theme, "conversationBg"),
+
+
       //footer
     ".input " + getCSSElement(theme, "messageC"),
     ".pane-footer.pane-chat-footer {background-color : " + getCSSElement(theme, "mainColor") + " !important; border-left-width : 0px; border-right-width : 0px;}",
@@ -186,11 +193,6 @@ function getCostumCSS(theme) {
     ".list-action.list-action-alt:hover "  + getCSSElement(theme, "chatListChatActiveBg"),
     ".chatlist-panel-body.pane-list-body " + getCSSElement(theme, "chatListChatBg"),
     ".empty-text " + getCSSElement(theme, "chatTitle"),
-    ".compose-popup-panel,",
-	".link-preview-compose > .btn-background,",
-	".block-compose {",
-	"    background-color: #323232;",
-	"}",
       //all media
     ".menu-tabs.menu-tabs-lists > .menu-item {border-radius : 0% !important;}",
     ".menu-tabs.menu-tabs-lists:before {background-color : " + getCSSElement(theme, "mainColor") + " !important;}",
